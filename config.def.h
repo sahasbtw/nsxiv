@@ -7,13 +7,13 @@ static const int WIN_HEIGHT = 600;
 /* colors and font can be overwritten via X resource properties.
  * See nsxiv(1), X(7) section Resources and xrdb(1) for more information.
  *                                      X resource            value (NULL == default) */
-static const char *WIN_BG[]   = { "Nsxiv.window.background",   "white" };
-static const char *WIN_FG[]   = { "Nsxiv.window.foreground",   "black" };
-static const char *MARK_FG[]  = { "Nsxiv.mark.foreground",      NULL };
+static const char *WIN_BG[]   = { "Nsxiv.window.background",   "#1c1c1c" };
+static const char *WIN_FG[]   = { "Nsxiv.window.foreground",   "#ff66cc" };
+static const char *MARK_FG[]  = { "Nsxiv.mark.foreground",     "#ff0000" };
 #if HAVE_LIBFONTS
-static const char *BAR_BG[]   = { "Nsxiv.bar.background",       NULL };
-static const char *BAR_FG[]   = { "Nsxiv.bar.foreground",       NULL };
-static const char *BAR_FONT[] = { "Nsxiv.bar.font",            "monospace-8" };
+static const char *BAR_BG[]   = { "Nsxiv.bar.background",      "#222222" };
+static const char *BAR_FG[]   = { "Nsxiv.bar.foreground",      "#ffffff" };
+static const char *BAR_FONT[] = { "Nsxiv.bar.font",            "FiraCode Nerd Font Mono-10" };
 
 /* if true, statusbar appears on top of the window */
 static const bool TOP_STATUSBAR = false;
@@ -85,7 +85,7 @@ static const bool TNS_FILTERS_IS_BLACKLIST = false;
 static const int thumb_sizes[] = { 32, 64, 96, 128, 160 };
 
 /* thumbnail size at startup, index into thumb_sizes[]: */
-static const int THUMB_SIZE = 3;
+static const int THUMB_SIZE = 5;
 
 #endif
 #ifdef INCLUDE_MAPPINGS_CONFIG
@@ -104,7 +104,7 @@ static const keymap_t keys[] = {
 	{ 0,            XK_Return,        g_switch_mode,        None },
 	{ 0,            XK_f,             g_toggle_fullscreen,  None },
 	{ 0,            XK_b,             g_toggle_bar,         None },
-	{ ControlMask,  XK_x,             g_prefix_external,    None },
+	{ 0,            XK_space,         g_prefix_external,    None },
 	{ 0,            XK_g,             g_first,              None },
 	{ 0,            XK_G,             g_n_or_last,          None },
 	{ 0,            XK_r,             g_reload_image,       None },

@@ -30,12 +30,29 @@ rotate() {
 	' -- "$1"
 }
 
+ereader() {
+	BOOK="$1"
+	PDF="${BOOK%.*}.pdf"
+	EPUB="${BOOK%.*}.epub"
+	if [ -f "$PDF" ]; then
+		zathura "$PDF" & killall nsxiv
+	elif [ -f "$EPUB"]; then
+		zathura "$EPUB" & killall nsxiv
+	else
+		DIR=$(dirname "$BOOK")
+		notify-send "Document not found" "There were no\n- $PDF\n- $EPUB\nFound in the directory $DIR"
+	fi
+}
+
 case "$1" in
+"C-b")	    echo $file ;;
+"p")	    while read file; do DIR=$(dirname "$file"); mpv "$DIR" & killall nsxiv ;  done ;;
+"l")	    while read file; do ereader "$file" & done ;;
 "C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
 "C-c")      while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
 "C-e")      while read file; do urxvt -bg "#444" -fg "#eee" -sl 0 -title "$file" -e sh -c "exiv2 -q -pa pr '$file' | less" & done ;;
 "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
-"C-r")      while read file; do rawtherapee "$file" & done ;;
+"C-r")      while read file; do rotate "$file" & done ;;
 "C-comma")  rotate 270 ;;
 "C-period") rotate  90 ;;
 "C-slash")  rotate 180 ;;
