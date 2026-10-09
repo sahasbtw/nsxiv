@@ -1,0 +1,7 @@
+#!/bin/sh
+
+library_dir="$XDG_DOWNLOAD_DIR/library/"
+catagories=$(ls "$library_dir")
+chosen=$(printf "All\\n%s" "$catagories" | dmenu -c -l 10 -p "Catagory:")
+[ -z "$chosen" ] && exit 0
+[ "All" = "$chosen" ] && nsxiv -t -r -b "$library_dir" || nsxiv -t -r -b "$library_dir$chosen/"

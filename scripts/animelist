@@ -1,0 +1,4 @@
+#!/bin/sh
+
+anime_dir="$XDG_DOWNLOAD_DIR/anime"
+nsxiv -t -b $anime_dir/*/cover.jpg $anime_dir/*/*/cover.jpg $anime_dir/*/*/*/cover.jpg
